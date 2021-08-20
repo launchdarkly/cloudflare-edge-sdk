@@ -1,0 +1,15 @@
+{
+  "name": "launchdarkly-edge-sdk",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --format 'node_modules/eslint-formatter-pretty' --ignore-path .eslintignore ."
+  },
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "eslint": "7.32.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-formatter-pretty": "4.1.0",
+    "eslint-plugin-prettier": "3.4.0",
+    "prettier": "2.3.2"
+  }
+}
