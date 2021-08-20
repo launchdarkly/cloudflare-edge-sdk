@@ -1,5 +1,6 @@
 {
-  "name": "launchdarkly-edge-sdk",
+  "name": "launchdarkly-cloudflare-edge-sdk",
+  "version": "0.0.1",
   "main": "index.js",
   "scripts": {
     "lint": "eslint --format 'node_modules/eslint-formatter-pretty' --ignore-path .eslintignore ."
