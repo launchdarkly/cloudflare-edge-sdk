@@ -12,12 +12,13 @@ const kvStore = function CloudFlareKVFeatureStore(storeNameTest, options) {
 };
 
 function cfFeatureStoreInternal(storeName, options) {
-  options = options || {};
+  const storeOptions = options || {};
+  const key = storeOptions.key || 'featureData';
   const store = {};
 
   store.getInternal = (kind, key, maybeCallback) => {
     const cb = maybeCallback || noop;
-    storeName.get('featureData').then(item => {
+    storeName.get(key).then(item => {
       const parseData = JSON.parse(item);
       cb(parseData[kind.namespace][key]);
     });
@@ -26,7 +27,7 @@ function cfFeatureStoreInternal(storeName, options) {
   store.getAllInternal = (kind, maybeCallback) => {
     const cb = maybeCallback || noop;
 
-    storeName.get('featureData').then(item => {
+    storeName.get(key).then(item => {
       const parseData = JSON.parse(item);
       cb(parseData[kind.namespace]);
     });
@@ -37,10 +38,10 @@ function cfFeatureStoreInternal(storeName, options) {
     cb && cb();
   };
 
-  store.upsertInternal = (kind, item, cb) => {};
+  store.upsertInternal = noop;
 
   async function insertKindAll(allData) {
-    await storeName.put('featureData', JSON.stringify(allData));
+    await storeName.put(key, JSON.stringify(allData));
   }
 
   store.initializedInternal = async maybeCallback => {

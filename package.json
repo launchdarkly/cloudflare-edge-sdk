@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint --format 'node_modules/eslint-formatter-pretty' --ignore-path .eslintignore ."
+    "lint": "eslint --format 'node_modules/eslint-formatter-pretty' --ignore-path .eslintignore .",
+    "test": "echo 'no tests to run yet'"
   },
   "license": "Apache-2.0",
   "dependencies": {
