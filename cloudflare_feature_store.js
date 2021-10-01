@@ -1,63 +1,54 @@
 const CachingStoreWrapper = require('launchdarkly-node-server-sdk/caching_store_wrapper');
 const noop = function () {};
 
-const defaultCacheTTLSeconds = 15;
+const defaultCacheTTLSeconds = 60;
 
-const kvStore = function CloudFlareKVFeatureStore(storeNameTest, options) {
+//TODO Use logger where applicable
+const kvStore = function CloudflareFeatureStore(kvNamespace, sdkKey, options, logger) {
   let ttl = options && options.cacheTTL;
   if (ttl === null || ttl === undefined) {
     ttl = defaultCacheTTLSeconds;
   }
-  return new CachingStoreWrapper(new cfFeatureStoreInternal(storeNameTest, options), ttl);
+
+  return config =>
+    new CachingStoreWrapper(cfFeatureStoreInternal(kvNamespace, sdkKey, logger || config.logger), ttl, 'Cloudflare');
 };
 
-function cfFeatureStoreInternal(storeName, options) {
-  const storeOptions = options || {};
-  const key = storeOptions.key || 'featureData';
+function cfFeatureStoreInternal(kvNamespace, sdkKey) {
+  const key = `LD-Env-${sdkKey}`;
   const store = {};
 
   store.getInternal = (kind, key, maybeCallback) => {
     const cb = maybeCallback || noop;
-    storeName.get(key).then(item => {
-      const parseData = JSON.parse(item);
-      cb(parseData[kind.namespace][key]);
+    kvNamespace.get(key, { type: 'json' }).then(item => {
+      cb(item[kind.namespace][key]);
     });
   };
 
   store.getAllInternal = (kind, maybeCallback) => {
     const cb = maybeCallback || noop;
-
-    storeName.get(key).then(item => {
-      const parseData = JSON.parse(item);
-      cb(parseData[kind.namespace]);
+    kvNamespace.get(key, { type: 'json' }).then(item => {
+      cb(item[kind.namespace]);
     });
   };
 
-  store.initInternal = async (allData, cb) => {
-    await insertKindAll(allData);
+  store.initInternal = (allData, cb) => {
     cb && cb();
   };
 
   store.upsertInternal = noop;
 
-  async function insertKindAll(allData) {
-    await storeName.put(key, JSON.stringify(allData));
-  }
-
-  store.initializedInternal = async maybeCallback => {
-    const cb =
-      maybeCallback ||
-      noop(() => {
-        cb && cb();
-      })();
+  store.initializedInternal = maybeCallback => {
+    const cb = maybeCallback || noop;
+    kvNamespace.get(key).then(item => cb(Boolean(item === null)));
   };
 
   // KV Binding is done outside of the application logic.
-  store.close = () => {};
+  store.close = noop;
 
   return store;
 }
 
 module.exports = {
-  CloudFlareKVFeatureStore: kvStore,
+  CloudflareFeatureStore: kvStore,
 };

@@ -74,7 +74,7 @@ rules:
   no-param-reassign:
     - error
     - props: true
-  
+
   # https://eslint.org/docs/rules/no-return-assign
   no-return-assign: error
 
@@ -98,7 +98,7 @@ rules:
   # https://github.com/prettier/eslint-plugin-prettier
   prettier/prettier:
     - error
-  
+
   quotes:
     - error
     - single

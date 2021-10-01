@@ -74,4 +74,3 @@ npm audit --json \
   | awk -F '>' '{ print $NF,$1 }' \
   | sort | uniq \
   | processItems
-  

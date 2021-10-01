@@ -3,11 +3,13 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
+    "check-typescript": "node_modules/typescript/bin/tsc",
     "lint": "eslint --format 'node_modules/eslint-formatter-pretty' --ignore-path .eslintignore .",
     "test": "echo 'no tests to run yet'"
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "@cloudflare/workers-types": "^2.2.2",
     "launchdarkly-node-server-sdk": "^6.2.0"
   },
   "devDependencies": {
@@ -15,6 +17,7 @@
     "eslint-config-prettier": "8.3.0",
     "eslint-formatter-pretty": "4.1.0",
     "eslint-plugin-prettier": "3.4.0",
-    "prettier": "2.3.2"
+    "prettier": "2.3.2",
+    "typescript": "^4.4.3"
   }
 }
