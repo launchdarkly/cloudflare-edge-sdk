@@ -8,6 +8,7 @@ env:
   node: true
 parserOptions:
   ecmaVersion: 2017 # allows us to use async/await, now that our Node version is always >= 8
+  sourceType: module
 plugins:
   #- babel
   - prettier
@@ -21,6 +22,7 @@ globals:
   afterEach: true
   window: false # don't allow references to "window" or "document" in the Node SDK
   document: false
+
 rules:
   # https://eslint.org/docs/rules/array-callback-return
   array-callback-return: error
@@ -52,7 +54,7 @@ rules:
 
   # https://eslint.org/docs/rules/no-implicit-coercion
   no-implicit-coercion:
-    - 'off'
+    - "off"
     - boolean: false
       number: true
       string: true

@@ -5,7 +5,9 @@
     "lib": [
       "es6"
     ],
-    "types": ["@cloudflare/workers-types"]
+    "types": [
+      "@cloudflare/workers-types"
+    ]
   },
   "files": [
     "index.d.ts",

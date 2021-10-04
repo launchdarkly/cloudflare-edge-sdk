@@ -9,6 +9,6 @@ declare global {
 }
 
 var opts = {
-    cacheTTL: 300,
+  cacheTTL: 300,
 };
 var cloudflareStore = CloudflareFeatureStore(TEST_NAMESPACE, 'SDK_KEY', opts);

@@ -21,14 +21,16 @@ function cfFeatureStoreInternal(kvNamespace, sdkKey) {
   store.getInternal = (kind, key, maybeCallback) => {
     const cb = maybeCallback || noop;
     kvNamespace.get(key, { type: 'json' }).then(item => {
-      cb(item[kind.namespace][key]);
+      const kindKey = kind.namespace === 'features' ? 'flags' : 'segments';
+      cb(item[kindKey][key]);
     });
   };
 
   store.getAllInternal = (kind, maybeCallback) => {
     const cb = maybeCallback || noop;
     kvNamespace.get(key, { type: 'json' }).then(item => {
-      cb(item[kind.namespace]);
+      const kindKey = kind.namespace === 'features' ? 'flags' : 'segments';
+      cb(item[kindKey]);
     });
   };
 
