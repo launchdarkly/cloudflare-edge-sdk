@@ -25,8 +25,8 @@ module.exports = (function () {
     if (!sdkKey) {
       throw new Error('You must configure the client with a client key');
     }
-    if (!kvNamespace) {
-      throw new Error('You must configure the client with a Cloudflare KV Store namespace');
+    if (!kvNamespace || typeof kvNamespace !== 'object' || !!kvNamespace.get === false) {
+      throw new Error('You must configure the client with a Cloudflare KV Store namespace binding');
     }
 
     const config = Object.assign({}, options || {});
@@ -40,7 +40,10 @@ module.exports = (function () {
 
     const defaultConfig = defaults();
 
-    return applyDefaults(config, defaultConfig);
+    const retConfig = applyDefaults(config, defaultConfig);
+    config.logger.debug(`Using Configuration: ${JSON.stringify(retConfig)}`);
+
+    return retConfig;
   };
 
   function applyDefaults(config, defaults) {

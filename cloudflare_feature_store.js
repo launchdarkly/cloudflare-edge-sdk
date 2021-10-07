@@ -14,22 +14,30 @@ const kvStore = function CloudflareFeatureStore(kvNamespace, sdkKey, options, lo
     new CachingStoreWrapper(cfFeatureStoreInternal(kvNamespace, sdkKey, logger || config.logger), ttl, 'Cloudflare');
 };
 
-function cfFeatureStoreInternal(kvNamespace, sdkKey) {
+function cfFeatureStoreInternal(kvNamespace, sdkKey, logger) {
   const key = `LD-Env-${sdkKey}`;
   const store = {};
 
   store.getInternal = (kind, key, maybeCallback) => {
+    logger.debug(`Requesting key: ${key} from KV.`);
     const cb = maybeCallback || noop;
     kvNamespace.get(key, { type: 'json' }).then(item => {
-      const kindKey = kind.namespace === 'features' ? 'flags' : 'segments';
+      if (item === null) {
+        logger.error('Feature data not found in KV.');
+      }
+      const kindKey = kind.namespace === 'features' ? 'flags' : kind.namespace;
       cb(item[kindKey][key]);
     });
   };
 
   store.getAllInternal = (kind, maybeCallback) => {
     const cb = maybeCallback || noop;
+    const kindKey = kind.namespace === 'features' ? 'flags' : kind.namespace;
+    logger.debug(`Requesting all ${kindKey} data from KV.`);
     kvNamespace.get(key, { type: 'json' }).then(item => {
-      const kindKey = kind.namespace === 'features' ? 'flags' : 'segments';
+      if (item === null) {
+        logger.error('Feature data not found in KV.');
+      }
       cb(item[kindKey]);
     });
   };
