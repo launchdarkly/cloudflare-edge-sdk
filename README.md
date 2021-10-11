@@ -15,24 +15,29 @@ TypeScript API documentation is [here](https://launchdarkly.github.io/cloudflare
 This assumes that you have already installed the LaunchDarkly Node.js SDK.
 
 1. Install this package with `npm`:
-
-        npm install launchdarkly-cloudflare-edge-sdk --save
+   ```
+   npm install launchdarkly-cloudflare-edge-sdk --save
+   ```
 
 2. Require the package:
-
-        const { CloudflareFeatureStore } = require('launchdarkly-cloudflare-edge-sdk');
+   ```javascript
+   const { CloudflareFeatureStore } = require('launchdarkly-cloudflare-edge-sdk');
+    ```
 
 3. When configuring your SDK client, add the Redis feature store:
-
-        const store = CloudflareFeatureStore(NAMESPACE, 'YOUR CLIENT-SIDE SDK KEY');
-        const config = { featureStore: store };
-        const client = LaunchDarkly.init('YOUR CLIENT-SIDE SDK KEY', config);
+   ```javascript
+   const store = CloudflareFeatureStore(NAMESPACE, 'YOUR CLIENT-SIDE SDK KEY');
+   const config = { featureStore: store };
+   const client = LaunchDarkly.init('YOUR CLIENT-SIDE SDK KEY', config);
+   ```
 
 ## Caching behavior
 
 To reduce Cloudflare KV reads, there is an optional in-memory cache that retains the last known data for a configurable amount of time. This is on by default; to turn it off (and guarantee that the latest feature flag data will always be retrieved from Cloudflare KV for every flag evaluation), configure the store as follows:
 
-        const store = CloudflareFeatureStore(NAMESPACE, 'YOUR CLIENT-SIDE SDK KEY', { cacheTTL: 0 });
+```javascript
+const store = CloudflareFeatureStore(NAMESPACE, 'YOUR CLIENT-SIDE SDK KEY', { cacheTTL: 0 });
+```
 
 ## About LaunchDarkly
 

@@ -8,7 +8,21 @@
     "lint": "eslint --format 'node_modules/eslint-formatter-pretty' --ignore-path .eslintignore .",
     "test": "npx jest"
   },
+  "types": "./index.d.ts",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/launchdarkly/cloudflare-edge-sdk.git"
+  },
+  "keywords": [
+    "launchdarkly",
+    "cloudflare",
+    "edge"
+  ],
+  "bugs": {
+    "url": "https://github.com/launchdarkly/cloudflare-edge-sdk/issues"
+  },
+  "homepage": "https://github.com/launchdarkly/cloudflare-edge-sdk",
   "dependencies": {
     "launchdarkly-node-server-sdk": "^6.2.0"
   },
