@@ -1,5 +1,6 @@
 const Ldlogger = require('launchdarkly-node-server-sdk/loggers');
 const cf = require('./cloudflare_feature_store');
+const messages = require('./messages');
 const PACKAGE_JSON = require('./package.json');
 
 module.exports = (function () {
@@ -21,13 +22,22 @@ module.exports = (function () {
     };
   };
 
+  const allowedOptions = ['logger', 'featureStore'];
+
   const validate = function (kvNamespace, sdkKey, options) {
     if (!sdkKey) {
-      throw new Error('You must configure the client with a client key');
+      throw new Error(messages.missingKey());
     }
+
     if (!kvNamespace || typeof kvNamespace !== 'object' || !!kvNamespace.get === false) {
-      throw new Error('You must configure the client with a Cloudflare KV Store namespace binding');
+      throw new Error(messages.missingNamespace());
     }
+
+    Object.entries(options).forEach(([key]) => {
+      if (!allowedOptions.includes(key)) {
+        throw new Error(messages.unsupportedOption(key));
+      }
+    });
 
     const config = Object.assign({}, options || {});
 
