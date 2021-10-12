@@ -1,14 +1,10 @@
-# LaunchDarkly Cloudflare Edge SDK
+# LaunchDarkly Edge SDK for Cloudflare
 
 [![CircleCI](https://circleci.com/gh/launchdarkly/cloudflare-edge-sdk.svg?style=svg)](https://circleci.com/gh/launchdarkly/cloudflare-edge-sdk)
 
-This library provides a Cloudflare KV persistence mechanism (feature store) for the [LaunchDarkly Node.js SDK](https://github.com/launchdarkly/node-server-sdk), replacing the default in-memory feature store.
+This library supports using Cloudflare [Workers KV](https://developers.cloudflare.com/workers/learning/how-kv-works) to replace the default in-memory feature store of the [LaunchDarkly Node.js SDK](https://github.com/launchdarkly/node-server-sdk).
 
-The minimum version of the LaunchDarkly Server-Side SDK for Node for use with this library is 6.2.0.
-
-For more information, see the [SDK features guide](https://docs.launchdarkly.com/sdk/features/database-integrations).
-
-TypeScript API documentation is [here](https://launchdarkly.github.io/cloudflare-edge-sdk).
+For more information, see the [SDK features guide](https://docs.launchdarkly.com/sdk/features/storing-data).
 
 ## Quick setup
 
@@ -21,23 +17,13 @@ This assumes that you have already installed the LaunchDarkly Node.js SDK.
 
 2. Require the package:
    ```javascript
-   const { CloudflareFeatureStore } = require('launchdarkly-cloudflare-edge-sdk');
+   const { init } = require('launchdarkly-cloudflare-edge-sdk');
     ```
 
-3. When configuring your SDK client, add the Redis feature store:
+3. When configuring your SDK client, initialize with the [Cloudflare KV namespace](https://developers.cloudflare.com/workers/runtime-apis/kv#kv-bindings):
    ```javascript
-   const store = CloudflareFeatureStore(NAMESPACE, 'YOUR CLIENT-SIDE SDK KEY');
-   const config = { featureStore: store };
-   const client = LaunchDarkly.init('YOUR CLIENT-SIDE SDK KEY', config);
+   const client = init(KV_NAMESPACE, 'YOUR CLIENT-SIDE SDK KEY');
    ```
-
-## Caching behavior
-
-To reduce Cloudflare KV reads, there is an optional in-memory cache that retains the last known data for a configurable amount of time. This is on by default; to turn it off (and guarantee that the latest feature flag data will always be retrieved from Cloudflare KV for every flag evaluation), configure the store as follows:
-
-```javascript
-const store = CloudflareFeatureStore(NAMESPACE, 'YOUR CLIENT-SIDE SDK KEY', { cacheTTL: 0 });
-```
 
 ## About LaunchDarkly
 
@@ -46,7 +32,7 @@ const store = CloudflareFeatureStore(NAMESPACE, 'YOUR CLIENT-SIDE SDK KEY', { ca
     * Gradually roll out a feature to an increasing percentage of users, and track the effect that the feature has on key metrics (for instance, how likely is a user to complete a purchase if they have feature A versus feature B?).
     * Turn off a feature that you realize is causing performance problems in production, without needing to re-deploy, or even restart the application with a changed configuration file.
     * Grant access to certain features based on user attributes, like payment plan (eg: users on the ‘gold’ plan get access to more features than users in the ‘silver’ plan). Disable parts of your application to facilitate maintenance, without taking everything offline.
-* LaunchDarkly provides feature flag SDKs for a wide variety of languages and technologies. Check out [our documentation](https://docs.launchdarkly.com/docs) for a complete list.
+* LaunchDarkly provides feature flag SDKs for a wide variety of languages and technologies. Read [our documentation](https://docs.launchdarkly.com/sdk) for a complete list.
 * Explore LaunchDarkly
     * [launchdarkly.com](https://www.launchdarkly.com/ "LaunchDarkly Main Website") for more information
     * [docs.launchdarkly.com](https://docs.launchdarkly.com/  "LaunchDarkly Documentation") for our documentation and SDK reference guides

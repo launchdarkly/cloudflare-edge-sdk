@@ -1,8 +1,8 @@
-# Contributing to the LaunchDarkly Server-Side SDK for Cloudflare
+# Contributing to the LaunchDarkly Edge SDK for Cloudflare
 
 ## Submitting bug reports and feature requests
 
-The LaunchDarkly SDK team monitors the [issue tracker](https://github.com/launchdarkly/node-server-sdk/issues) in the SDK repository. Bug reports and feature requests specific to this SDK should be filed in this issue tracker. The SDK team will respond to all newly filed issues within two business days.
+The LaunchDarkly SDK team monitors the [issue tracker](https://github.com/launchdarkly/cloudflare-edge-sdk/issues) in the SDK repository. Bug reports and feature requests specific to this SDK should be filed in this issue tracker. The SDK team will respond to all newly filed issues within two business days.
 
 ## Submitting pull requests
 

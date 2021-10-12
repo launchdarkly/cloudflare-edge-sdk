@@ -1,7 +1,7 @@
 // Type definitions for launchdarkly-cloudflare-edge-sdk
 
 /**
- * This is the API reference for the LaunchDarkly Cloudflare Edge SDK.
+ * This is the API reference for the LaunchDarkly Edge SDK for Cloudflare.
  */
 
 declare module 'launchdarkly-cloudflare-edge-sdk/client' {
