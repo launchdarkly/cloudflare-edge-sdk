@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "strict": true,
+    "lib": [
+      "es6"
+    ],
+    "types": [
+      "@cloudflare/workers-types"
+    ]
+  },
+  "files": [
+    "index.d.ts",
+    "test-types.ts"
+  ]
+}
