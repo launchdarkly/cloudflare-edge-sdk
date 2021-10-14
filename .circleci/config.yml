@@ -47,8 +47,9 @@ jobs:
       - checkout
       - run: echo "Node version:" `node --version`
       - run: npm install
+      - run: npm i --prefix=$HOME/.local @cloudflare/wrangler@1.19.3 -g
       - run:
-          command: npm test
+          command: npm test && npm run test:integration
       - when:
           condition: <<parameters.run-lint>>
           steps:

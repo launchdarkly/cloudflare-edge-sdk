@@ -18,7 +18,7 @@ function cfFeatureStoreInternal(kvNamespace, sdkKey, logger) {
   const key = `LD-Env-${sdkKey}`;
   const store = {};
 
-  store.getInternal = (kind, key, maybeCallback) => {
+  store.getInternal = (kind, flagKey, maybeCallback) => {
     logger.debug(`Requesting key: ${key} from KV.`);
     const cb = maybeCallback || noop;
     kvNamespace.get(key, { type: 'json' }).then(item => {
@@ -26,7 +26,7 @@ function cfFeatureStoreInternal(kvNamespace, sdkKey, logger) {
         logger.error('Feature data not found in KV.');
       }
       const kindKey = kind.namespace === 'features' ? 'flags' : kind.namespace;
-      cb(item[kindKey][key]);
+      cb(item[kindKey][flagKey]);
     });
   };
 
