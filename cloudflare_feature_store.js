@@ -3,7 +3,6 @@ const noop = function () {};
 
 const defaultCacheTTLSeconds = 60;
 
-//TODO Use logger where applicable
 const kvStore = function CloudflareFeatureStore(kvNamespace, sdkKey, options, logger) {
   let ttl = options && options.cacheTTL;
   if (ttl === null || ttl === undefined) {
@@ -19,27 +18,37 @@ function cfFeatureStoreInternal(kvNamespace, sdkKey, logger) {
   const store = {};
 
   store.getInternal = (kind, flagKey, maybeCallback) => {
-    logger.debug(`Requesting key: ${key} from KV.`);
+    logger.debug(`Requesting key: ${flagKey} from KV.`);
     const cb = maybeCallback || noop;
-    kvNamespace.get(key, { type: 'json' }).then(item => {
-      if (item === null) {
-        logger.error('Feature data not found in KV.');
-      }
-      const kindKey = kind.namespace === 'features' ? 'flags' : kind.namespace;
-      cb(item[kindKey][flagKey]);
-    });
+    kvNamespace
+      .get(key, { type: 'json' })
+      .then(item => {
+        if (item === null) {
+          logger.error('Feature data not found in KV.');
+        }
+        const kindKey = kind.namespace === 'features' ? 'flags' : kind.namespace;
+        cb(item[kindKey][flagKey]);
+      })
+      .catch(err => {
+        logger.error(err);
+      });
   };
 
   store.getAllInternal = (kind, maybeCallback) => {
     const cb = maybeCallback || noop;
     const kindKey = kind.namespace === 'features' ? 'flags' : kind.namespace;
     logger.debug(`Requesting all ${kindKey} data from KV.`);
-    kvNamespace.get(key, { type: 'json' }).then(item => {
-      if (item === null) {
-        logger.error('Feature data not found in KV.');
-      }
-      cb(item[kindKey]);
-    });
+    kvNamespace
+      .get(key, { type: 'json' })
+      .then(item => {
+        if (item === null) {
+          logger.error('Feature data not found in KV.');
+        }
+        cb(item[kindKey]);
+      })
+      .catch(err => {
+        logger.error(err);
+      });
   };
 
   store.initInternal = (allData, cb) => {
