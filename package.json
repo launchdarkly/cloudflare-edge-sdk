@@ -2,7 +2,6 @@
   "name": "launchdarkly-cloudflare-edge-sdk",
   "version": "0.1.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "check-typescript": "node_modules/typescript/bin/tsc",
     "lint": "eslint --format 'node_modules/eslint-formatter-pretty' --ignore-path .eslintignore .",
