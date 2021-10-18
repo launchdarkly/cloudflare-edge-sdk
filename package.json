@@ -7,7 +7,8 @@
     "check-typescript": "node_modules/typescript/bin/tsc",
     "lint": "eslint --format 'node_modules/eslint-formatter-pretty' --ignore-path .eslintignore .",
     "test": "npx jest --testPathIgnorePatterns=tests/integration",
-    "test:integration": "npx jest tests/integration"
+    "test:integration": "npx jest tests/integration",
+    "ts": "npx tsc"
   },
   "types": "./index.d.ts",
   "license": "Apache-2.0",
@@ -28,7 +29,7 @@
     "launchdarkly-node-server-sdk": "^6.2.0"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^2.2.2",
+    "@cloudflare/workers-types": "^3.0.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-formatter-pretty": "4.1.0",
