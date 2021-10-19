@@ -2,6 +2,11 @@
 .vscode
 test-types.js
 junit.xml
+
+# Docs
+/docs/build/
+
+# Local tests
 tests/miniflare/worker
 tests/miniflare/dist
 tests/miniflare/node_modules
