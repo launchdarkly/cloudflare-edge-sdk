@@ -1,5 +1,8 @@
 node_modules/
+<<<<<<< HEAD
 tests/miniflare/dist
 tests/miniflare/node_modules
 tests/miniflare/worker/script.js
+=======
+>>>>>>> efb569f371aa260cadf971d13ec270e90b2e9c29
 test-types.js
