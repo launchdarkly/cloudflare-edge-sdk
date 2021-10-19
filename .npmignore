@@ -13,3 +13,5 @@ tests
 .pre-commit-config.yaml
 .prettierrc
 CODEOWNERS
+junit.xml
+test-types.ts

@@ -1,2 +1,5 @@
 node_modules/
+tests/miniflare/dist
+tests/miniflare/node_modules
+tests/miniflare/worker/script.js
 test-types.js

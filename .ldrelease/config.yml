@@ -14,5 +14,9 @@ jobs:
     template:
       name: npm
 
+documentation:
+  gitHubPages: true
+  title: LaunchDarkly Server-Side Cloudflare Edge SDK
+
 sdk:
   displayName: "Cloudflare"

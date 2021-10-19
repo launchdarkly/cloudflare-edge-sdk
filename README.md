@@ -8,8 +8,6 @@ For more information, see the [SDK features guide](https://docs.launchdarkly.com
 
 ## Quick setup
 
-This assumes that you have already installed the LaunchDarkly Node.js SDK.
-
 1. Install this package with `npm`:
    ```
    npm install launchdarkly-cloudflare-edge-sdk --save

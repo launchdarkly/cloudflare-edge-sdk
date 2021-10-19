@@ -6,20 +6,16 @@ extends:
 env:
   es6: true
   node: true
+  jest/globals: true
 parserOptions:
   ecmaVersion: 2017 # allows us to use async/await, now that our Node version is always >= 8
   sourceType: module
 plugins:
   #- babel
   - prettier
+  - jest
 globals:
   VERSION: true
-  describe: true
-  it: true
-  expect: true
-  jest: true
-  beforeEach: true
-  afterEach: true
   window: false # don't allow references to "window" or "document" in the Node SDK
   document: false
 

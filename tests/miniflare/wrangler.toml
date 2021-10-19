@@ -1,0 +1,14 @@
+name = "launchdarkly-cloudflare-edge-sdk-integration-test"
+type = "webpack"
+compatibility_date = "2021-10-13"
+account_id = ""
+workers_dev = true
+route = ""
+zone_id = ""
+webpack_config = "webpack.config.js"
+kv_namespaces = [
+  { binding = "FeatureStore", id = "<ignored>", preview_id = "<ignored>" }
+]
+
+[miniflare]
+kv_persist = "./tests/miniflare/kv/"
