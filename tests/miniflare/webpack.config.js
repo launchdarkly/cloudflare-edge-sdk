@@ -6,4 +6,7 @@ module.exports = {
     tls: 'empty',
     net: 'empty',
   },
+  output: {
+    hashFunction: "xxhash64"
+}
 };
