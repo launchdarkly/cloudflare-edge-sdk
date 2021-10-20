@@ -7,6 +7,6 @@ module.exports = {
     net: 'empty',
   },
   output: {
-    hashFunction: "sha256"
+    hashFunction: "sha256sum"
 }
 };
