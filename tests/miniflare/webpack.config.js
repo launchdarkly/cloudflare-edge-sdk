@@ -6,7 +6,4 @@ module.exports = {
     tls: 'empty',
     net: 'empty',
   },
-  output: {
-    hashFunction: "sha256sum"
-}
 };

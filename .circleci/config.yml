@@ -58,6 +58,30 @@ jobs:
           name: dependency audit
           command: ./scripts/better-audit.sh
 
+  build-test-linux-latest:
+    parameters:
+      run-lint:
+        type: boolean
+        default: false
+      docker-image:
+        type: string
+    docker:
+      - image: <<parameters.docker-image>>
+    steps:
+      - checkout
+      - run: echo "Node version:" `node --version`
+      - run: npm install
+      - run: npm i --prefix=$HOME/.local @cloudflare/wrangler@1.19.3 -g
+      - run:
+          command: node --openssl-legacy-provider -p 'crypto.createHash("md4")' npm run test && node --openssl-legacy-provider -p 'crypto.createHash("md4")' npm run test:integration
+      - when:
+          condition: <<parameters.run-lint>>
+          steps:
+            - run: npm run lint
+      - run:
+          name: dependency audit
+          command: ./scripts/better-audit.sh
+
   build-test-windows:
     executor:
       name: win/default
