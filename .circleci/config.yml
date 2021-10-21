@@ -53,7 +53,7 @@ jobs:
       - run: npm install
       - run: npm i --prefix=$HOME/.local @cloudflare/wrangler@1.19.3 -g
       - run: 
-          command: <<parameters.node-args>> run test && run test:integration
+          command: <<parameters.node-args>> run test && <<parameters.node-args>> run test:integration
       - when:
           condition: <<parameters.run-lint>>
           steps:
