@@ -15,7 +15,7 @@ workflows:
           name: latest Node version
           docker-image: cimg/node:current
           run-lint: true
-          node-args: --openssl-legacy-provider -p 'crypto.createHash("md4")'
+          node-args: node --openssl-legacy-provider -p 'crypto.createHash("md4") npm'
       - build-test-linux:
           name: Node 16.3
           docker-image: cimg/node:16.3
@@ -42,7 +42,7 @@ jobs:
         default: false
       node-args:
         type: string
-        default: ''
+        default: 'npm'
       docker-image:
         type: string
     docker:
@@ -52,15 +52,7 @@ jobs:
       - run: echo "Node version:" `node --version`
       - run: npm install
       - run: npm i --prefix=$HOME/.local @cloudflare/wrangler@1.19.3 -g
-      - when: 
-          condition: <<parameters.node-args>>
-          steps:
-            - run: node <<parameters.node-args>> npm run test && node <<parameters.node-args>> npm run test:integration
-      - when: 
-          condition: 
-            not: <<parameters.node-args>>
-          steps:            
-            - run: npm test && npm run test:integration
+      - run: <<parameters.node-args>> run test && run test:integration
       - when:
           condition: <<parameters.run-lint>>
           steps:
