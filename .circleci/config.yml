@@ -40,7 +40,9 @@ jobs:
       run-lint:
         type: boolean
         default: false
-        node-args: ''
+      node-args:
+        type: string
+        default: ''
       docker-image:
         type: string
     docker:
