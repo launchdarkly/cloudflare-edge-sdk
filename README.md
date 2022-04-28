@@ -8,9 +8,10 @@ For more information, see the [SDK features guide](https://docs.launchdarkly.com
 
 ## 👋 Here be Dragons 🐉 This is a hard fork ☢️
 
-```
+``` bash
 git clone git@github.com:candy-digital/cloudflare-edge-sdk
 cd cloudflare-edge-sdk
+git checkout skunkworks/esm
 npm install # or yarn
 
 # Monkey punch the world
@@ -21,6 +22,16 @@ npx rollup --c rollup.config.js
 
 # 🚀☢️🐉👈
 npm link
+```
+
+n.b. [`sendEvents`](https://launchdarkly.github.io/js-client-sdk/interfaces/_launchdarkly_js_client_sdk_.ldoptions.html#sendevents) **MUST BE** set to `false` as the monkey punch hack is to `null` the Node.js HTTP stack (i.e. any instance of:
+
+``` js
+require('http')
+require('https')
+
+import http from 'http'
+import https from 'https'
 ```
 
 ## Quick setup
