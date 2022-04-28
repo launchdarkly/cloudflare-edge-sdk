@@ -1,3 +1,4 @@
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import nodePolyfills from 'rollup-plugin-node-polyfills';
 import json from '@rollup/plugin-json';
 import commonjs from '@rollup/plugin-commonjs';
@@ -8,5 +9,12 @@ export default {
     file: 'index.mjs',
     format: 'es'
   },
-  plugins: [commonjs(), json(), nodePolyfills()]
+  plugins: [
+    commonjs(),
+    json(),
+    nodePolyfills({
+      crypto: true
+    }),
+    nodeResolve()
+  ]
 };
