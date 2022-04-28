@@ -9,7 +9,18 @@ For more information, see the [SDK features guide](https://docs.launchdarkly.com
 ## 👋 Here be Dragons 🐉 This is a hard fork ☢️
 
 ```
+git clone git@github.com:candy-digital/cloudflare-edge-sdk
+cd cloudflare-edge-sdk
+npm install # or yarn
+
+# Monkey punch the world
+cp vendor/rollup-plugin-node-polyfills/dist/index.* node_modules/rollup-plugin-node-polyfills/dist/  
+
+# Hope and then hope some more
 npx rollup --c rollup.config.js
+
+# 🚀☢️🐉👈
+npm link
 ```
 
 ## Quick setup

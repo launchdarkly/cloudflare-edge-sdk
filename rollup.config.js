@@ -1,3 +1,4 @@
+import alias from '@rollup/plugin-alias';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import nodePolyfills from 'rollup-plugin-node-polyfills';
 import json from '@rollup/plugin-json';
@@ -10,11 +11,14 @@ export default {
     format: 'es'
   },
   plugins: [
+    alias({
+      entries: [
+        { find: 'crypto', replacement: 'crypto-browserify' }
+      ]
+    }),
     commonjs(),
     json(),
-    nodePolyfills({
-      crypto: true
-    }),
+    nodePolyfills(),
     nodeResolve()
   ]
 };
