@@ -6,6 +6,12 @@ This library supports using Cloudflare [Workers KV](https://developers.cloudflar
 
 For more information, see the [SDK features guide](https://docs.launchdarkly.com/sdk/features/storing-data).
 
+## 👋 Here be Dragons 🐉 This is a hard fork ☢️
+
+```
+npx rollup --c rollup.config.js
+```
+
 ## Quick setup
 
 1. Install this package with `npm`:

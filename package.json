@@ -1,7 +1,8 @@
 {
   "name": "launchdarkly-cloudflare-edge-sdk",
   "version": "0.1.0",
-  "main": "index.js",
+  "main": "index.mjs",
+  "module": "index.mjs",
   "scripts": {
     "check-typescript": "node_modules/typescript/bin/tsc",
     "lint": "eslint --format 'node_modules/eslint-formatter-pretty' --ignore-path .eslintignore .",
@@ -25,7 +26,10 @@
   },
   "homepage": "https://github.com/launchdarkly/cloudflare-edge-sdk",
   "dependencies": {
-    "launchdarkly-node-server-sdk": "^6.2.0"
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "launchdarkly-node-server-sdk": "^6.2.0",
+    "rollup": "^2.70.2"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^3.0.0",
@@ -38,6 +42,7 @@
     "jest-junit": "^13.0.0",
     "miniflare": "^1.4.1",
     "prettier": "2.3.2",
+    "rollup-plugin-node-polyfills": "^0.2.1",
     "typescript": "^4.4.3"
   },
   "jest": {
