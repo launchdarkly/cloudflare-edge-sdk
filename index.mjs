@@ -53028,6 +53028,7 @@ var dependencies = {
 	rollup: "^2.70.2"
 };
 var devDependencies = {
+	"@candy-digital/rollup-plugin-node-polyfills": "^0.2.1",
 	"@cloudflare/workers-types": "^3.0.0",
 	"@rollup/plugin-node-resolve": "^13.2.1",
 	"crypto-browserify": "^3.12.0",
@@ -53040,7 +53041,6 @@ var devDependencies = {
 	"jest-junit": "^13.0.0",
 	miniflare: "^1.4.1",
 	prettier: "2.3.2",
-	"rollup-plugin-node-polyfills": "^0.2.1",
 	typescript: "^4.4.3"
 };
 var jest = {
@@ -53171,8 +53171,8 @@ const newClient = function (kvNamespace, sdkKey, originalConfig = {}) {
   return client;
 };
 
-var cloudflareEdgeSdk = {
+var launchdarklyCloudflareEdgeSdk = {
   init: newClient,
 };
 
-export { cloudflareEdgeSdk as default };
+export { launchdarklyCloudflareEdgeSdk as default };
