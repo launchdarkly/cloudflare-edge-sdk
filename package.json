@@ -15,7 +15,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/@candy-digital/launchdarkly-cloudflare-edge-sdk.git"
+    "url": "https://github.com/candy-digital/launchdarkly-cloudflare-edge-sdk.git"
   },
   "keywords": [
     "launchdarkly",
@@ -23,9 +23,9 @@
     "edge"
   ],
   "bugs": {
-    "url": "https://github.com/@candy-digital/cloudflare-edge-sdk/issues"
+    "url": "https://github.com/candy-digital/cloudflare-edge-sdk/issues"
   },
-  "homepage": "https://github.com/@candy-digital/cloudflare-edge-sdk",
+  "homepage": "https://github.com/candy-digital/cloudflare-edge-sdk",
   "dependencies": {
     "launchdarkly-node-server-sdk": "^6.2.0"
   },
