@@ -1,7 +1,7 @@
 {
   "name": "@candy-digital/launchdarkly-cloudflare-edge-sdk",
-  "version": "0.1.0",
-  "main": "index.mjs",
+  "version": "0.1.1",
+  "main": "index.js",
   "module": "index.mjs",
   "scripts": {
     "check-typescript": "node_modules/typescript/bin/tsc",
