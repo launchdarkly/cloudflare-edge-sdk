@@ -10,3 +10,6 @@ junit.xml
 tests/miniflare/worker
 tests/miniflare/dist
 tests/miniflare/node_modules
+
+# Build
+index.mjs

@@ -27,7 +27,8 @@
   },
   "homepage": "https://github.com/candy-digital/cloudflare-edge-sdk",
   "dependencies": {
-    "launchdarkly-node-server-sdk": "^6.2.0"
+    "launchdarkly-node-server-sdk": "^6.2.0",
+    "setimmediate": "^1.0.5"
   },
   "devDependencies": {
     "@candy-digital/rollup-plugin-node-polyfills": "^0.2.1",

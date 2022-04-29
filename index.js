@@ -1,3 +1,5 @@
+require('setimmediate');
+
 const ld = require('launchdarkly-node-server-sdk');
 const configuration = require('./configuration');
 
