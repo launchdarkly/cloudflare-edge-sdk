@@ -1,5 +1,5 @@
 {
-  "name": "launchdarkly-cloudflare-edge-sdk",
+  "name": "@candy-digital/launchdarkly-cloudflare-edge-sdk",
   "version": "0.1.0",
   "main": "index.mjs",
   "module": "index.mjs",
@@ -8,13 +8,14 @@
     "lint": "eslint --format 'node_modules/eslint-formatter-pretty' --ignore-path .eslintignore .",
     "test": "npx jest --testPathIgnorePatterns=tests/integration",
     "test:integration": "npx jest tests/integration",
-    "ts": "npx tsc"
+    "ts": "npx tsc",
+    "prepublishOnly": "rollup --c rollup.config.js"
   },
   "types": "./index.d.ts",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/launchdarkly/cloudflare-edge-sdk.git"
+    "url": "https://github.com/@candy-digital/launchdarkly-cloudflare-edge-sdk.git"
   },
   "keywords": [
     "launchdarkly",
@@ -22,19 +23,18 @@
     "edge"
   ],
   "bugs": {
-    "url": "https://github.com/launchdarkly/cloudflare-edge-sdk/issues"
+    "url": "https://github.com/@candy-digital/cloudflare-edge-sdk/issues"
   },
-  "homepage": "https://github.com/launchdarkly/cloudflare-edge-sdk",
+  "homepage": "https://github.com/@candy-digital/cloudflare-edge-sdk",
   "dependencies": {
-    "@rollup/plugin-alias": "^3.1.9",
-    "@rollup/plugin-commonjs": "^22.0.0",
-    "@rollup/plugin-json": "^4.1.0",
-    "launchdarkly-node-server-sdk": "^6.2.0",
-    "rollup": "^2.70.2"
+    "launchdarkly-node-server-sdk": "^6.2.0"
   },
   "devDependencies": {
     "@candy-digital/rollup-plugin-node-polyfills": "^0.2.1",
     "@cloudflare/workers-types": "^3.0.0",
+    "@rollup/plugin-alias": "^3.1.9",
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.2.1",
     "crypto-browserify": "^3.12.0",
     "eslint": "7.32.0",
@@ -46,6 +46,7 @@
     "jest-junit": "^13.0.0",
     "miniflare": "^1.4.1",
     "prettier": "2.3.2",
+    "rollup": "^2.70.2",
     "typescript": "^4.4.3"
   },
   "jest": {
