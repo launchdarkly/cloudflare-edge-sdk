@@ -1,14 +1,18 @@
 // This file exists only so that we can run the TypeScript compiler in the CI build
 // to validate our index.d.ts file.
 
-import { CloudflareFeatureStore } from 'launchdarkly-cloudflare-edge-sdk/feature_store';
+import { init } from 'launchdarkly-cloudflare-edge-sdk';
 
 // Mimics a namespace binding being injected by wrangler.toml
 declare global {
   const TEST_NAMESPACE: KVNamespace
 }
 
-var opts = {
-  cacheTTL: 300,
-};
-var cloudflareStore = CloudflareFeatureStore(TEST_NAMESPACE, 'SDK_KEY', opts);
+var ldClient = init(TEST_NAMESPACE, 'SDK_KEY');
+
+ldClient.waitForInitialization().then(async () => {
+  const user = { key: 'example-user-key', name: 'Sandy' }
+  await ldClient.variation('my-boolean-flag', user, false)
+  await ldClient.variationDetail('my-boolean-flag', user, false)
+  await ldClient.allFlagsState(user)
+})
