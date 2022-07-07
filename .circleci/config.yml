@@ -23,6 +23,9 @@ jobs:
       run-lint:
         type: boolean
         default: false
+      node-args:
+        type: string
+        default: 'npm'
       docker-image:
         type: string
     docker:
@@ -32,8 +35,8 @@ jobs:
       - run: echo "Node version:" `node --version`
       - run: npm install
       - run: npm i --prefix=$HOME/.local @cloudflare/wrangler@1.19.3 -g
-      - run:
-          command: npm test && npm run test:integration
+      - run: 
+          command: <<parameters.node-args>> run test && <<parameters.node-args>> run test:integration
       - when:
           condition: <<parameters.run-lint>>
           steps:
