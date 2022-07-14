@@ -6,6 +6,8 @@ This library supports using Cloudflare [Workers KV](https://developers.cloudflar
 
 For more information, see the [SDK features guide](https://docs.launchdarkly.com/sdk/features/storing-data).
 
+_This version of the SDK is a beta version and should not be considered ready for production use while this message is visible._
+
 ## Quick setup
 
 1. Install this package with `npm`:
