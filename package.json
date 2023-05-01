@@ -1,6 +1,6 @@
 {
   "name": "launchdarkly-cloudflare-edge-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "scripts": {
     "check-typescript": "node_modules/typescript/bin/tsc",
